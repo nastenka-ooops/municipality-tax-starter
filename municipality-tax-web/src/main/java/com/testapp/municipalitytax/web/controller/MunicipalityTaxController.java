@@ -29,7 +29,7 @@ public class MunicipalityTaxController {
   @ResponseStatus(HttpStatus.CREATED)
   @ResponseBody
   UUIDResponse addMunicipalityTax(@RequestBody AddTaxRequest addTaxRequest) {
-    throw new UnsupportedOperationException();
+    return taxesService.addTax(addTaxRequest);
   }
 
   /**
@@ -44,8 +44,8 @@ public class MunicipalityTaxController {
   @ResponseStatus(HttpStatus.OK)
   @ResponseBody
   void updateMunicipalityTax(
-      @PathVariable("taxId") UUID taxId, @RequestBody UpdateTaxRequest updateTaxRequest) {
-    throw new UnsupportedOperationException();
+          @PathVariable("taxId") UUID taxId, @RequestBody UpdateTaxRequest updateTaxRequest) {
+    taxesService.updateTax(taxId, updateTaxRequest);
   }
 
   /**
@@ -59,8 +59,8 @@ public class MunicipalityTaxController {
   @ResponseStatus(HttpStatus.OK)
   @ResponseBody
   TaxResponse findMunicipalityTax(
-      @PathVariable("municipality") String municipality, @PathVariable("date") String date) {
-    throw new UnsupportedOperationException();
+          @PathVariable("municipality") String municipality, @PathVariable("date") String date) {
+    return taxesService.findTax(municipality, date);
   }
 
   /**
@@ -72,6 +72,6 @@ public class MunicipalityTaxController {
   @ResponseStatus(HttpStatus.OK)
   @ResponseBody
   TaxListResponse getAllMunicipalityTaxes() {
-    throw new UnsupportedOperationException();
+    return taxesService.getAllMunicipalityTaxes();
   }
 }

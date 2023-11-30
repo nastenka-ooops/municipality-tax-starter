@@ -4,14 +4,18 @@ import com.testapp.municipalitytax.domain.MunicipalityTax;
 import com.testapp.municipalitytax.domain.Schedule;
 import com.testapp.municipalitytax.entity.TaxEntity;
 import java.time.LocalDate;
+import java.util.UUID;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MunicipalityTaxToTaxEntityConverter implements Converter<MunicipalityTax, TaxEntity> {
+
   @Override
   public TaxEntity convert(MunicipalityTax source) {
-    throw new UnsupportedOperationException();
+    LocalDate endDate = scheduleToDate(source.startDate(), source.taxSchedule());
+    return new TaxEntity(UUID.randomUUID(), source.municipality(), source.tax(), source.startDate(), endDate);
   }
 
   private LocalDate scheduleToDate(LocalDate startDate, Schedule schedule) {
